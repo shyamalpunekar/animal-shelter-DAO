@@ -3,7 +3,7 @@ package models;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Animals {
+public class Animal {
 
     private String animalName;
     private String gender;
@@ -13,7 +13,7 @@ public class Animals {
     private int id;
     private boolean adopted;
 
-    public Animals(String animalName) {
+    public Animal(String animalName) {
         this.animalName = animalName;
         this.adopted = false;
         this.admittanceDate = LocalDateTime.now();
@@ -82,7 +82,7 @@ public class Animals {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Animals animals = (Animals) o;
+        Animal animals = (Animal) o;
 
         if (id != animals.id) return false;
         if (adopted != animals.adopted) return false;
