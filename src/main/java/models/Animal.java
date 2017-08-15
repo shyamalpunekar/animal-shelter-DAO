@@ -82,30 +82,24 @@ public class Animal {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Animal animals = (Animal) o;
+        Animal animal = (Animal) o;
 
-        if (id != animals.id) return false;
-        if (adopted != animals.adopted) return false;
-        if (!animalName.equals(animals.animalName)) return false;
-        if (gender != null ? !gender.equals(animals.gender) : animals.gender != null) return false;
-        if (admittanceDate != null ? !admittanceDate.equals(animals.admittanceDate) : animals.admittanceDate != null)
-            return false;
-        if (animalType != null ? !animalType.equals(animals.animalType) : animals.animalType != null) return false;
-        return animalBreeds != null ? animalBreeds.equals(animals.animalBreeds) : animals.animalBreeds == null;
+        if (id != animal.id) return false;
+        if (adopted != animal.adopted) return false;
+        if (!animalName.equals(animal.animalName)) return false;
+        if (gender != null ? !gender.equals(animal.gender) : animal.gender != null) return false;
+        if (animalType != null ? !animalType.equals(animal.animalType) : animal.animalType != null) return false;
+        return animalBreeds != null ? animalBreeds.equals(animal.animalBreeds) : animal.animalBreeds == null;
     }
 
     @Override
     public int hashCode() {
         int result = animalName.hashCode();
         result = 31 * result + (gender != null ? gender.hashCode() : 0);
-        result = 31 * result + (admittanceDate != null ? admittanceDate.hashCode() : 0);
         result = 31 * result + (animalType != null ? animalType.hashCode() : 0);
         result = 31 * result + (animalBreeds != null ? animalBreeds.hashCode() : 0);
         result = 31 * result + id;
         result = 31 * result + (adopted ? 1 : 0);
         return result;
     }
-
-
-
 }

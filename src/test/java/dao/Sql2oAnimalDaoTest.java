@@ -7,9 +7,13 @@ import org.junit.Test;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public class Sql2oAnimalDaoTest {
+
+    private Sql2oAnimalDao taskDao; //ignore me for now
+    //private Connection conn;
 
     private Sql2oAnimalDao animalDao; //ignore me for now. We'll create this soon.
     private Connection conn; //must be sql2o class conn
@@ -22,8 +26,7 @@ public class Sql2oAnimalDaoTest {
         //keep connection open through entire test so it does not get erased.
         conn = sql2o.open();
     }
-    
-    
+
     @After
     public void tearDown() throws Exception {
         conn.close();
@@ -37,4 +40,21 @@ public class Sql2oAnimalDaoTest {
         animalDao.add(animal);
         assertNotEquals(originalAnimalId, animal.getId()); //how does this work?
     }
+
+    @Test
+    public void existingTasksCanBeFoundById() throws Exception {
+        Animal animal = new Animal ("Dog");
+        animalDao.add(animal);
+        Animal foundAnimal = animalDao.findById(animal.getId());
+        assertEquals(animal, foundAnimal);
+    }
+
+    @Test
+    public void addedTasksAreReturnedFromgetAll() throws Exception {
+        Animal animal = new Animal ("Dog");
+        animalDao.add(animal);
+        assertEquals(1, animalDao.getAll().size());
+    }
+
+
 }

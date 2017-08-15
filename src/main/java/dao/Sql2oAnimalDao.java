@@ -37,7 +37,7 @@ public class Sql2oAnimalDao implements AnimalDao {
     @Override
     public List<Animal> getAll() {
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM tasks") //raw sql
+            return con.createQuery("SELECT * FROM animal") //raw sql
                     .executeAndFetch(Animal.class); //fetch a list
         }
     }
@@ -45,7 +45,7 @@ public class Sql2oAnimalDao implements AnimalDao {
     @Override
     public Animal findById(int id) {
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM tasks WHERE id = :id")
+            return con.createQuery("SELECT * FROM animal WHERE id = :id")
                     .addParameter("id", id) //key/value pair, key must match above
                     .executeAndFetchFirst(Animal.class); //fetch an individual item
         }
