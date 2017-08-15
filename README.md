@@ -1,12 +1,12 @@
 # Animal Shelter
 
-#### A Party Planning Program for Epicodus Java Week 1 Independent Project, 08.15.2017
+#### animal shelter that tracks animals up for adoption, and potential owners that have visited the shelter, 08.15.2017
 
 ####  By Shyamal Punekar, Kira loo
 
 ##Description
 
-  This is a command line application for an all-inclusive party planning service. This will prompt the user with several questions about a party they're throwing. Based on information they provide, create a unique Event object. Then, evaluate its properties to calculate an estimated cost for party planning services.
+  This is a command line application for an all animal shelter. This will prompt the user with several questions about a party they're throwing. Based on information they provide, create a unique Event object. Then, evaluate its properties to calculate an estimated cost for party planning services.
 
 ## Specifications
 
@@ -45,4 +45,4 @@
 ### License
   This software is licensed under the MIT license.
 
-  Copyright (c) 2016 Shyamal Punekar
+  Copyright (c) 2016 Shyamal Punekar and Kira Loo
