@@ -1,13 +1,15 @@
 package models;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Animals {
+
     private String animalName;
     private String gender;
     private LocalDateTime admittanceDate;
     private String animalType;
-    private String animalBreed;
+    ArrayList<String> animalBreeds;
     private int id;
     private boolean adopted;
 
@@ -15,6 +17,7 @@ public class Animals {
         this.animalName = animalName;
         this.adopted = false;
         this.admittanceDate = LocalDateTime.now();
+       // this.animalBreeds = getAnimalBreeds();
     }
 
     public String getAnimalName() {
@@ -49,13 +52,6 @@ public class Animals {
         this.animalType = animalType;
     }
 
-    public String getAnimalBreed() {
-        return animalBreed;
-    }
-
-    public void setAnimalBreed(String animalBreed) {
-        this.animalBreed = animalBreed;
-    }
 
     public int getId() {
         return id;
@@ -71,6 +67,43 @@ public class Animals {
 
     public void setAdopted(boolean adopted) {
         this.adopted = adopted;
+    }
+
+    public ArrayList<String> getAnimalBreeds() {
+        return animalBreeds;
+    }
+
+    public void setAnimalBreeds(ArrayList<String> animalBreeds) {
+        this.animalBreeds = animalBreeds;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Animals animals = (Animals) o;
+
+        if (id != animals.id) return false;
+        if (adopted != animals.adopted) return false;
+        if (!animalName.equals(animals.animalName)) return false;
+        if (gender != null ? !gender.equals(animals.gender) : animals.gender != null) return false;
+        if (admittanceDate != null ? !admittanceDate.equals(animals.admittanceDate) : animals.admittanceDate != null)
+            return false;
+        if (animalType != null ? !animalType.equals(animals.animalType) : animals.animalType != null) return false;
+        return animalBreeds != null ? animalBreeds.equals(animals.animalBreeds) : animals.animalBreeds == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = animalName.hashCode();
+        result = 31 * result + (gender != null ? gender.hashCode() : 0);
+        result = 31 * result + (admittanceDate != null ? admittanceDate.hashCode() : 0);
+        result = 31 * result + (animalType != null ? animalType.hashCode() : 0);
+        result = 31 * result + (animalBreeds != null ? animalBreeds.hashCode() : 0);
+        result = 31 * result + id;
+        result = 31 * result + (adopted ? 1 : 0);
+        return result;
     }
 
 
