@@ -9,6 +9,7 @@ import org.sql2o.Sql2o;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 public class Sql2oAnimalDaoTest {
 
@@ -73,6 +74,34 @@ public class Sql2oAnimalDaoTest {
         Animal updatedAnimal = animalDao.findById(animal.getId()); //why do I need to refind this?
         assertNotEquals(animalName, updatedAnimal.getAnimalName());
     }
+
+    @Test
+    public void deleteByIdDeletesCorrectAnimal() throws Exception {
+        Animal animal = easyAnimal();
+        animalDao.add(animal);
+        animalDao.deleteById(animal.getId());
+        assertEquals(1, animalDao.getAll().size());
+    }
+
+    @Test
+    public void clearAllClearsAll() throws Exception {
+        Animal animal = easyAnimal();
+        Animal otherAnimal = new Animal( "brush the cat");
+        animalDao.add(animal);
+        animalDao.add(otherAnimal);
+        int daoSize = animalDao.getAll().size();
+        animalDao.clearAllAnimals(1);
+        assertTrue(daoSize > 0 && daoSize > animalDao.getAll().size()); //this is a little overcomplicated, but illustrates well how we might use `assertTrue` in a different way.
+    }
+
+    @Test
+    public void categoryIdIsReturnedCorrectly() throws Exception {
+        Animal animal = easyAnimal();
+        int originalCatId = animal.getId();
+        animalDao.add(animal);
+        assertNotEquals(originalCatId, animalDao.findById(animal.getId()));
+    }
+
 
 
 }

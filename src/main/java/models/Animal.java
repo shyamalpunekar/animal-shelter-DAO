@@ -114,4 +114,9 @@ public class Animal {
         instances.add(this);
 
     }
+
+    public static void clearAnimal() {
+        instances.clear();
+    }
+
 }

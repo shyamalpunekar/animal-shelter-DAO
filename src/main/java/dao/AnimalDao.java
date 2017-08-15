@@ -18,6 +18,10 @@ public interface AnimalDao {
     //update
     void update(int id, String content);
     //delete
-   // void deleteById(int id);
+    void deleteById(int id);
     //void clearAllAnimals();
+
+    void clearAllAnimals(int id);
+
+
 }
