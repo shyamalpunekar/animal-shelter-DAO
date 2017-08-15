@@ -13,11 +13,14 @@ public class Animal {
     private int id;
     private boolean adopted;
 
+    private static ArrayList<Animal> instances = new ArrayList<>();
+
     public Animal(String animalName) {
         this.animalName = animalName;
         this.adopted = false;
         this.admittanceDate = LocalDateTime.now();
        // this.animalBreeds = getAnimalBreeds();
+        instances.add(this);
     }
 
     public String getAnimalName() {
@@ -101,5 +104,14 @@ public class Animal {
         result = 31 * result + id;
         result = 31 * result + (adopted ? 1 : 0);
         return result;
+    }
+
+    public void update(int id, String newName) {
+        this.animalName = newName;
+    }
+
+    public void add(Customer customer) {
+        instances.add(this);
+
     }
 }

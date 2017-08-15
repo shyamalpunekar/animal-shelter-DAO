@@ -32,28 +32,46 @@ public class Sql2oAnimalDaoTest {
         conn.close();
     }
 
+    public Animal easyAnimal() {return new Animal("cat");}
+
 
     @Test
     public void addingCourseSetsId() throws Exception {
-        Animal animal = new Animal ("Dog");
+        Animal animal = easyAnimal();
         int originalAnimalId = animal.getId();
         animalDao.add(animal);
         assertNotEquals(originalAnimalId, animal.getId()); //how does this work?
     }
 
     @Test
-    public void existingTasksCanBeFoundById() throws Exception {
-        Animal animal = new Animal ("Dog");
+    public void existingAnimalsCanBeFoundById() throws Exception {
+        Animal animal = easyAnimal();
         animalDao.add(animal);
         Animal foundAnimal = animalDao.findById(animal.getId());
         assertEquals(animal, foundAnimal);
     }
 
     @Test
-    public void addedTasksAreReturnedFromgetAll() throws Exception {
-        Animal animal = new Animal ("Dog");
+    public void addedAnimalsAreReturnedFromgetAll() throws Exception {
+        Animal animal = easyAnimal();
         animalDao.add(animal);
         assertEquals(1, animalDao.getAll().size());
+    }
+
+    @Test
+    public void noAnimalsReturnsEmptyList() throws Exception {
+        assertEquals(0, animalDao.getAll().size());
+    }
+
+    @Test
+    public void updateChangesAnimalContent() throws Exception {
+        String animalName = "Peter";
+        Animal animal = easyAnimal();
+        animalDao.add(animal);
+
+        animalDao.update(animal.getId(),"Henry");
+        Animal updatedAnimal = animalDao.findById(animal.getId()); //why do I need to refind this?
+        assertNotEquals(animalName, updatedAnimal.getAnimalName());
     }
 
 

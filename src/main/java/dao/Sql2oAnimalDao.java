@@ -50,4 +50,17 @@ public class Sql2oAnimalDao implements AnimalDao {
                     .executeAndFetchFirst(Animal.class); //fetch an individual item
         }
     }
+
+    @Override
+    public void update(int id, String newAnimalName){
+        String sql = "UPDATE animal SET animalName = :animalName WHERE id = :id";
+        try(Connection con = sql2o.open()){
+            con.createQuery(sql)
+                    .addParameter("animalName", newAnimalName)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
+    }
 }
